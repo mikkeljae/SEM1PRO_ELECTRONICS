@@ -1,0 +1,21 @@
+--------------------------------- Version Log ----------------------------------
+Version                                 Path
+System Generator 2015.4                 /opt/Xilinx/Vivado/2015.4
+Matlab 8.6.0.267246 (R2015b)            /usr/local/MATLAB/R2015b
+Vivado 2015.4                           /opt/Xilinx/Vivado/2015.4
+--------------------------------------------------------------------------------
+Summary of Errors:
+Error 0001: The specified M-Function 'state_machine' could not be found.
+     Block: 'pwm_generator_deluxe_extpin_o/MCode'
+--------------------------------------------------------------------------------
+
+Error 0001:
+
+Reported by:
+  'pwm_generator_deluxe_extpin_o/MCode'
+
+Details:
+The specified M-Function 'state_machine' could not be found.
+Error occurred during "Block Configuration".
+
+--------------------------------------------------------------------------------

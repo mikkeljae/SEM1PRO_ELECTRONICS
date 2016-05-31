@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SemiconductorLibrary xmlns="http://www.plexim.com/xml/semiconductors/" version="1.1">
+    <Package class="MOSFET" vendor="International Rectifier" partnumber="IRFP4468PbF">
+        <Variables/>
+        <SemiconductorData type="MOSFET">
+            <TurnOnLoss>
+                <ComputationMethod>Table only</ComputationMethod>
+                <CurrentAxis> -180 -1 1 180</CurrentAxis>
+                <VoltageAxis> 20 50 80</VoltageAxis>
+                <TemperatureAxis> 25</TemperatureAxis>
+                <Energy scale="0.001">
+                    <Temperature>
+                        <Voltage> 0.2329 0.00129 0.00129 0.2329</Voltage>
+                        <Voltage> 0.7676 0.0043 0.0043 0.7676</Voltage>
+                        <Voltage> 1.313 0.0073 0.0073 1.313</Voltage>
+                    </Temperature>
+                </Energy>
+            </TurnOnLoss>
+            <TurnOffLoss>
+                <ComputationMethod>Table only</ComputationMethod>
+                <CurrentAxis> -180 -1 1 180</CurrentAxis>
+                <VoltageAxis> 20 50 80</VoltageAxis>
+                <TemperatureAxis> 25</TemperatureAxis>
+                <Energy scale="0.001">
+                    <Temperature>
+                        <Voltage> 0.2329 0.00129 0.00129 0.2329</Voltage>
+                        <Voltage> 0.7676 0.0043 0.0043 0.7676</Voltage>
+                        <Voltage> 1.313 0.0073 0.0073 1.313</Voltage>
+                    </Temperature>
+                </Energy>
+            </TurnOffLoss>
+            <ConductionLoss>
+                <ComputationMethod>Formula only</ComputationMethod>
+                <Formula>(3.55091e-5*T^2 + 1.10784e-2*T+1.69536)*i</Formula>
+                <CurrentAxis> 0</CurrentAxis>
+                <TemperatureAxis> 25</TemperatureAxis>
+                <VoltageDrop scale="1">
+                    <Temperature> 0</Temperature>
+                </VoltageDrop>
+            </ConductionLoss>
+        </SemiconductorData>
+        <ThermalModel>
+            <Branch type="Cauer">
+                <RCElement R="0.29" C="0.001"/>
+                <RCElement R="0.4" C="0.05"/>
+            </Branch>
+        </ThermalModel>
+        <Comment>
+            <Line></Line>
+        </Comment>
+    </Package>
+</SemiconductorLibrary>

@@ -1,0 +1,814 @@
+# Note: This file is produced automatically, and will be overwritten the next
+# time you press "Generate" in System Generator. 
+#
+
+
+namespace eval ::xilinx::dsp::planaheaddriver {
+	set Compilation {IP Catalog}
+	set CompilationFlow {IP}
+	set CreateInterfaceDocument {on}
+	set DSPDevice {xc7z010}
+	set DSPFamily {zynq}
+	set DSPPackage {clg400}
+	set DSPSpeed {-3}
+	set FPGAClockPeriod 10
+	set GenerateTestBench 0
+	set HDLLanguage {vhdl}
+	set IPOOCCacheRootPath {/home/mikkeljaedicke/.Xilinx/Sysgen/SysgenVivado/lnx64.o/ip}
+	set IP_Auto_Infer {1}
+	set IP_Categories_Text {System_Generator_for_DSP}
+	set IP_Common_Repos {0}
+	set IP_Description {}
+	set IP_Dir {}
+	set IP_Library_Text {SysGen}
+	set IP_LifeCycle_Menu {2}
+	set IP_Logo {sysgen_icon_100.png}
+	set IP_Name {}
+	set IP_Revision {0}
+	set IP_Socket_IP {0}
+	set IP_Socket_IP_Proj_Path {}
+	set IP_Vendor_Text {User_Company}
+	set IP_Version_Text {1.0}
+	set ImplStrategyName {Vivado Implementation Defaults}
+	set PostProjectCreationProc {dsp_package_for_vivado_ip_integrator}
+	set Project {interfaces}
+	set ProjectFiles {
+		{{conv_pkg.vhd} -lib {xil_defaultlib}}
+		{{synth_reg.vhd} -lib {xil_defaultlib}}
+		{{synth_reg_w_init.vhd} -lib {xil_defaultlib}}
+		{{srl17e.vhd} -lib {xil_defaultlib}}
+		{{synth_reg_reg.vhd} -lib {xil_defaultlib}}
+		{{single_reg_w_init.vhd} -lib {xil_defaultlib}}
+		{{xlclockdriver_rd.vhd} -lib {xil_defaultlib}}
+		{{vivado_ip.tcl}}
+		{{interfaces_axi_lite_interface_verilog.v}}
+		{{conv_pkg.v}}
+		{{synth_reg.v}}
+		{{synth_reg_w_init.v}}
+		{{convert_type.v}}
+		{{interfaces.mdd}}
+		{{interfaces_hw.h}}
+		{{interfaces.h}}
+		{{interfaces_sinit.c}}
+		{{interfaces.c}}
+		{{interfaces_linux.c}}
+		{{interfaces.mtcl}}
+		{{Makefile.mak}}
+		{{index.html}}
+		{{interfaces_entity_declarations.vhd} -lib {xil_defaultlib}}
+		{{interfaces.vhd} -lib {xil_defaultlib}}
+		{{interfaces_clock.xdc}}
+		{{interfaces.xdc}}
+		{{interfaces.htm}}
+	}
+	set SimPeriod 1
+	set SimTime 10
+	set SimulationTime {310.00000000 ns}
+	set SynthStrategyName {Vivado Synthesis Defaults}
+	set SynthesisTool {Vivado}
+	set TargetDir {/home/mikkeljaedicke/Zynq_Book/sem_project2/ip_cores/io/netlist}
+	set TopLevelModule {interfaces}
+	set TopLevelSimulinkHandle 1936
+	set VHDLLib {xil_defaultlib}
+	set TopLevelPortInterface {}
+	dict set TopLevelPortInterface powergood_in Name {powergood_in}
+	dict set TopLevelPortInterface powergood_in Type Bool
+	dict set TopLevelPortInterface powergood_in ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface powergood_in BinaryPoint 0
+	dict set TopLevelPortInterface powergood_in Width 1
+	dict set TopLevelPortInterface powergood_in DatFile {interfaces_powergood_in.dat}
+	dict set TopLevelPortInterface powergood_in IconText {powergood_in}
+	dict set TopLevelPortInterface powergood_in Direction in
+	dict set TopLevelPortInterface powergood_in Period 1
+	dict set TopLevelPortInterface powergood_in Interface 0
+	dict set TopLevelPortInterface powergood_in InterfaceName {}
+	dict set TopLevelPortInterface powergood_in InterfaceString {DATA}
+	dict set TopLevelPortInterface powergood_in ClockDomain {interfaces}
+	dict set TopLevelPortInterface powergood_in Locs {}
+	dict set TopLevelPortInterface powergood_in IOStandard {}
+	dict set TopLevelPortInterface otp_en_gate_in Name {otp_en_gate_in}
+	dict set TopLevelPortInterface otp_en_gate_in Type Bool
+	dict set TopLevelPortInterface otp_en_gate_in ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface otp_en_gate_in BinaryPoint 0
+	dict set TopLevelPortInterface otp_en_gate_in Width 1
+	dict set TopLevelPortInterface otp_en_gate_in DatFile {interfaces_otp_en_gate_in.dat}
+	dict set TopLevelPortInterface otp_en_gate_in IconText {otp_en_gate_in}
+	dict set TopLevelPortInterface otp_en_gate_in Direction in
+	dict set TopLevelPortInterface otp_en_gate_in Period 1
+	dict set TopLevelPortInterface otp_en_gate_in Interface 0
+	dict set TopLevelPortInterface otp_en_gate_in InterfaceName {}
+	dict set TopLevelPortInterface otp_en_gate_in InterfaceString {DATA}
+	dict set TopLevelPortInterface otp_en_gate_in ClockDomain {interfaces}
+	dict set TopLevelPortInterface otp_en_gate_in Locs {}
+	dict set TopLevelPortInterface otp_en_gate_in IOStandard {}
+	dict set TopLevelPortInterface octv_in Name {octv_in}
+	dict set TopLevelPortInterface octv_in Type Bool
+	dict set TopLevelPortInterface octv_in ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface octv_in BinaryPoint 0
+	dict set TopLevelPortInterface octv_in Width 1
+	dict set TopLevelPortInterface octv_in DatFile {interfaces_octv_in.dat}
+	dict set TopLevelPortInterface octv_in IconText {octv_in}
+	dict set TopLevelPortInterface octv_in Direction in
+	dict set TopLevelPortInterface octv_in Period 1
+	dict set TopLevelPortInterface octv_in Interface 0
+	dict set TopLevelPortInterface octv_in InterfaceName {}
+	dict set TopLevelPortInterface octv_in InterfaceString {DATA}
+	dict set TopLevelPortInterface octv_in ClockDomain {interfaces}
+	dict set TopLevelPortInterface octv_in Locs {}
+	dict set TopLevelPortInterface octv_in IOStandard {}
+	dict set TopLevelPortInterface ocp_en_gate_in Name {ocp_en_gate_in}
+	dict set TopLevelPortInterface ocp_en_gate_in Type Bool
+	dict set TopLevelPortInterface ocp_en_gate_in ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface ocp_en_gate_in BinaryPoint 0
+	dict set TopLevelPortInterface ocp_en_gate_in Width 1
+	dict set TopLevelPortInterface ocp_en_gate_in DatFile {interfaces_ocp_en_gate_in.dat}
+	dict set TopLevelPortInterface ocp_en_gate_in IconText {ocp_en_gate_in}
+	dict set TopLevelPortInterface ocp_en_gate_in Direction in
+	dict set TopLevelPortInterface ocp_en_gate_in Period 1
+	dict set TopLevelPortInterface ocp_en_gate_in Interface 0
+	dict set TopLevelPortInterface ocp_en_gate_in InterfaceName {}
+	dict set TopLevelPortInterface ocp_en_gate_in InterfaceString {DATA}
+	dict set TopLevelPortInterface ocp_en_gate_in ClockDomain {interfaces}
+	dict set TopLevelPortInterface ocp_en_gate_in Locs {}
+	dict set TopLevelPortInterface ocp_en_gate_in IOStandard {}
+	dict set TopLevelPortInterface fault_in Name {fault_in}
+	dict set TopLevelPortInterface fault_in Type Bool
+	dict set TopLevelPortInterface fault_in ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface fault_in BinaryPoint 0
+	dict set TopLevelPortInterface fault_in Width 1
+	dict set TopLevelPortInterface fault_in DatFile {interfaces_fault_in.dat}
+	dict set TopLevelPortInterface fault_in IconText {fault_in}
+	dict set TopLevelPortInterface fault_in Direction in
+	dict set TopLevelPortInterface fault_in Period 1
+	dict set TopLevelPortInterface fault_in Interface 0
+	dict set TopLevelPortInterface fault_in InterfaceName {}
+	dict set TopLevelPortInterface fault_in InterfaceString {DATA}
+	dict set TopLevelPortInterface fault_in ClockDomain {interfaces}
+	dict set TopLevelPortInterface fault_in Locs {}
+	dict set TopLevelPortInterface fault_in IOStandard {}
+	dict set TopLevelPortInterface en_gate_in Name {en_gate_in}
+	dict set TopLevelPortInterface en_gate_in Type Bool
+	dict set TopLevelPortInterface en_gate_in ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface en_gate_in BinaryPoint 0
+	dict set TopLevelPortInterface en_gate_in Width 1
+	dict set TopLevelPortInterface en_gate_in DatFile {interfaces_en_gate_in.dat}
+	dict set TopLevelPortInterface en_gate_in IconText {en_gate_in}
+	dict set TopLevelPortInterface en_gate_in Direction in
+	dict set TopLevelPortInterface en_gate_in Period 1
+	dict set TopLevelPortInterface en_gate_in Interface 0
+	dict set TopLevelPortInterface en_gate_in InterfaceName {}
+	dict set TopLevelPortInterface en_gate_in InterfaceString {DATA}
+	dict set TopLevelPortInterface en_gate_in ClockDomain {interfaces}
+	dict set TopLevelPortInterface en_gate_in Locs {}
+	dict set TopLevelPortInterface en_gate_in IOStandard {}
+	dict set TopLevelPortInterface drive_enable_in Name {drive_enable_in}
+	dict set TopLevelPortInterface drive_enable_in Type Bool
+	dict set TopLevelPortInterface drive_enable_in ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface drive_enable_in BinaryPoint 0
+	dict set TopLevelPortInterface drive_enable_in Width 1
+	dict set TopLevelPortInterface drive_enable_in DatFile {interfaces_drive_enable_in.dat}
+	dict set TopLevelPortInterface drive_enable_in IconText {drive_enable_in}
+	dict set TopLevelPortInterface drive_enable_in Direction in
+	dict set TopLevelPortInterface drive_enable_in Period 1
+	dict set TopLevelPortInterface drive_enable_in Interface 0
+	dict set TopLevelPortInterface drive_enable_in InterfaceName {}
+	dict set TopLevelPortInterface drive_enable_in InterfaceString {DATA}
+	dict set TopLevelPortInterface drive_enable_in ClockDomain {interfaces}
+	dict set TopLevelPortInterface drive_enable_in Locs {}
+	dict set TopLevelPortInterface drive_enable_in IOStandard {}
+	dict set TopLevelPortInterface ir_enable_out Name {ir_enable_out}
+	dict set TopLevelPortInterface ir_enable_out Type Bool
+	dict set TopLevelPortInterface ir_enable_out ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface ir_enable_out BinaryPoint 0
+	dict set TopLevelPortInterface ir_enable_out Width 1
+	dict set TopLevelPortInterface ir_enable_out DatFile {interfaces_ir_enable_out.dat}
+	dict set TopLevelPortInterface ir_enable_out IconText {ir_enable_out}
+	dict set TopLevelPortInterface ir_enable_out Direction out
+	dict set TopLevelPortInterface ir_enable_out Period 1
+	dict set TopLevelPortInterface ir_enable_out Interface 0
+	dict set TopLevelPortInterface ir_enable_out InterfaceName {}
+	dict set TopLevelPortInterface ir_enable_out InterfaceString {DATA}
+	dict set TopLevelPortInterface ir_enable_out ClockDomain {interfaces}
+	dict set TopLevelPortInterface ir_enable_out Locs {}
+	dict set TopLevelPortInterface ir_enable_out IOStandard {}
+	dict set TopLevelPortInterface ir_led_out Name {ir_led_out}
+	dict set TopLevelPortInterface ir_led_out Type Bool
+	dict set TopLevelPortInterface ir_led_out ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface ir_led_out BinaryPoint 0
+	dict set TopLevelPortInterface ir_led_out Width 1
+	dict set TopLevelPortInterface ir_led_out DatFile {interfaces_ir_led_out.dat}
+	dict set TopLevelPortInterface ir_led_out IconText {ir_led_out}
+	dict set TopLevelPortInterface ir_led_out Direction out
+	dict set TopLevelPortInterface ir_led_out Period 1
+	dict set TopLevelPortInterface ir_led_out Interface 0
+	dict set TopLevelPortInterface ir_led_out InterfaceName {}
+	dict set TopLevelPortInterface ir_led_out InterfaceString {DATA}
+	dict set TopLevelPortInterface ir_led_out ClockDomain {interfaces}
+	dict set TopLevelPortInterface ir_led_out Locs {}
+	dict set TopLevelPortInterface ir_led_out IOStandard {}
+	dict set TopLevelPortInterface main_relay_out Name {main_relay_out}
+	dict set TopLevelPortInterface main_relay_out Type Bool
+	dict set TopLevelPortInterface main_relay_out ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface main_relay_out BinaryPoint 0
+	dict set TopLevelPortInterface main_relay_out Width 1
+	dict set TopLevelPortInterface main_relay_out DatFile {interfaces_main_relay_out.dat}
+	dict set TopLevelPortInterface main_relay_out IconText {main_relay_out}
+	dict set TopLevelPortInterface main_relay_out Direction out
+	dict set TopLevelPortInterface main_relay_out Period 1
+	dict set TopLevelPortInterface main_relay_out Interface 0
+	dict set TopLevelPortInterface main_relay_out InterfaceName {}
+	dict set TopLevelPortInterface main_relay_out InterfaceString {DATA}
+	dict set TopLevelPortInterface main_relay_out ClockDomain {interfaces}
+	dict set TopLevelPortInterface main_relay_out Locs {}
+	dict set TopLevelPortInterface main_relay_out IOStandard {}
+	dict set TopLevelPortInterface ocp_led_out Name {ocp_led_out}
+	dict set TopLevelPortInterface ocp_led_out Type Bool
+	dict set TopLevelPortInterface ocp_led_out ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface ocp_led_out BinaryPoint 0
+	dict set TopLevelPortInterface ocp_led_out Width 1
+	dict set TopLevelPortInterface ocp_led_out DatFile {interfaces_ocp_led_out.dat}
+	dict set TopLevelPortInterface ocp_led_out IconText {ocp_led_out}
+	dict set TopLevelPortInterface ocp_led_out Direction out
+	dict set TopLevelPortInterface ocp_led_out Period 1
+	dict set TopLevelPortInterface ocp_led_out Interface 0
+	dict set TopLevelPortInterface ocp_led_out InterfaceName {}
+	dict set TopLevelPortInterface ocp_led_out InterfaceString {DATA}
+	dict set TopLevelPortInterface ocp_led_out ClockDomain {interfaces}
+	dict set TopLevelPortInterface ocp_led_out Locs {}
+	dict set TopLevelPortInterface ocp_led_out IOStandard {}
+	dict set TopLevelPortInterface otp_led_out Name {otp_led_out}
+	dict set TopLevelPortInterface otp_led_out Type Bool
+	dict set TopLevelPortInterface otp_led_out ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface otp_led_out BinaryPoint 0
+	dict set TopLevelPortInterface otp_led_out Width 1
+	dict set TopLevelPortInterface otp_led_out DatFile {interfaces_otp_led_out.dat}
+	dict set TopLevelPortInterface otp_led_out IconText {otp_led_out}
+	dict set TopLevelPortInterface otp_led_out Direction out
+	dict set TopLevelPortInterface otp_led_out Period 1
+	dict set TopLevelPortInterface otp_led_out Interface 0
+	dict set TopLevelPortInterface otp_led_out InterfaceName {}
+	dict set TopLevelPortInterface otp_led_out InterfaceString {DATA}
+	dict set TopLevelPortInterface otp_led_out ClockDomain {interfaces}
+	dict set TopLevelPortInterface otp_led_out Locs {}
+	dict set TopLevelPortInterface otp_led_out IOStandard {}
+	dict set TopLevelPortInterface zybo_en_gate_out Name {zybo_en_gate_out}
+	dict set TopLevelPortInterface zybo_en_gate_out Type Bool
+	dict set TopLevelPortInterface zybo_en_gate_out ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface zybo_en_gate_out BinaryPoint 0
+	dict set TopLevelPortInterface zybo_en_gate_out Width 1
+	dict set TopLevelPortInterface zybo_en_gate_out DatFile {interfaces_zybo_en_gate_out.dat}
+	dict set TopLevelPortInterface zybo_en_gate_out IconText {zybo_en_gate_out}
+	dict set TopLevelPortInterface zybo_en_gate_out Direction out
+	dict set TopLevelPortInterface zybo_en_gate_out Period 1
+	dict set TopLevelPortInterface zybo_en_gate_out Interface 0
+	dict set TopLevelPortInterface zybo_en_gate_out InterfaceName {}
+	dict set TopLevelPortInterface zybo_en_gate_out InterfaceString {DATA}
+	dict set TopLevelPortInterface zybo_en_gate_out ClockDomain {interfaces}
+	dict set TopLevelPortInterface zybo_en_gate_out Locs {}
+	dict set TopLevelPortInterface zybo_en_gate_out IOStandard {}
+	dict set TopLevelPortInterface zybo_led_out Name {zybo_led_out}
+	dict set TopLevelPortInterface zybo_led_out Type Bool
+	dict set TopLevelPortInterface zybo_led_out ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface zybo_led_out BinaryPoint 0
+	dict set TopLevelPortInterface zybo_led_out Width 1
+	dict set TopLevelPortInterface zybo_led_out DatFile {interfaces_zybo_led_out.dat}
+	dict set TopLevelPortInterface zybo_led_out IconText {zybo_led_out}
+	dict set TopLevelPortInterface zybo_led_out Direction out
+	dict set TopLevelPortInterface zybo_led_out Period 1
+	dict set TopLevelPortInterface zybo_led_out Interface 0
+	dict set TopLevelPortInterface zybo_led_out InterfaceName {}
+	dict set TopLevelPortInterface zybo_led_out InterfaceString {DATA}
+	dict set TopLevelPortInterface zybo_led_out ClockDomain {interfaces}
+	dict set TopLevelPortInterface zybo_led_out Locs {}
+	dict set TopLevelPortInterface zybo_led_out IOStandard {}
+	dict set TopLevelPortInterface interfaces_aresetn Name {interfaces_aresetn}
+	dict set TopLevelPortInterface interfaces_aresetn Type -
+	dict set TopLevelPortInterface interfaces_aresetn ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_aresetn BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_aresetn Width 1
+	dict set TopLevelPortInterface interfaces_aresetn DatFile {}
+	dict set TopLevelPortInterface interfaces_aresetn IconText {interfaces_aresetn}
+	dict set TopLevelPortInterface interfaces_aresetn Direction in
+	dict set TopLevelPortInterface interfaces_aresetn Period 1
+	dict set TopLevelPortInterface interfaces_aresetn Interface 8
+	dict set TopLevelPortInterface interfaces_aresetn InterfaceName {}
+	dict set TopLevelPortInterface interfaces_aresetn InterfaceString {ARESETN}
+	dict set TopLevelPortInterface interfaces_aresetn ClockDomain {}
+	dict set TopLevelPortInterface interfaces_aresetn Locs {}
+	dict set TopLevelPortInterface interfaces_aresetn IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_awaddr Name {interfaces_s_axi_awaddr}
+	dict set TopLevelPortInterface interfaces_s_axi_awaddr Type -
+	dict set TopLevelPortInterface interfaces_s_axi_awaddr ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_awaddr BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_awaddr Width 6
+	dict set TopLevelPortInterface interfaces_s_axi_awaddr DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_awaddr IconText {interfaces_s_axi_awaddr}
+	dict set TopLevelPortInterface interfaces_s_axi_awaddr Direction in
+	dict set TopLevelPortInterface interfaces_s_axi_awaddr Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_awaddr Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_awaddr InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_awaddr InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_awaddr ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_awaddr Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_awaddr IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_awvalid Name {interfaces_s_axi_awvalid}
+	dict set TopLevelPortInterface interfaces_s_axi_awvalid Type -
+	dict set TopLevelPortInterface interfaces_s_axi_awvalid ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_awvalid BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_awvalid Width 1
+	dict set TopLevelPortInterface interfaces_s_axi_awvalid DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_awvalid IconText {interfaces_s_axi_awvalid}
+	dict set TopLevelPortInterface interfaces_s_axi_awvalid Direction in
+	dict set TopLevelPortInterface interfaces_s_axi_awvalid Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_awvalid Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_awvalid InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_awvalid InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_awvalid ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_awvalid Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_awvalid IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_awready Name {interfaces_s_axi_awready}
+	dict set TopLevelPortInterface interfaces_s_axi_awready Type -
+	dict set TopLevelPortInterface interfaces_s_axi_awready ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_awready BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_awready Width 1
+	dict set TopLevelPortInterface interfaces_s_axi_awready DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_awready IconText {interfaces_s_axi_awready}
+	dict set TopLevelPortInterface interfaces_s_axi_awready Direction out
+	dict set TopLevelPortInterface interfaces_s_axi_awready Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_awready Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_awready InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_awready InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_awready ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_awready Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_awready IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_wdata Name {interfaces_s_axi_wdata}
+	dict set TopLevelPortInterface interfaces_s_axi_wdata Type -
+	dict set TopLevelPortInterface interfaces_s_axi_wdata ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_wdata BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_wdata Width 32
+	dict set TopLevelPortInterface interfaces_s_axi_wdata DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_wdata IconText {interfaces_s_axi_wdata}
+	dict set TopLevelPortInterface interfaces_s_axi_wdata Direction in
+	dict set TopLevelPortInterface interfaces_s_axi_wdata Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_wdata Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_wdata InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_wdata InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_wdata ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_wdata Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_wdata IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_wstrb Name {interfaces_s_axi_wstrb}
+	dict set TopLevelPortInterface interfaces_s_axi_wstrb Type -
+	dict set TopLevelPortInterface interfaces_s_axi_wstrb ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_wstrb BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_wstrb Width 4
+	dict set TopLevelPortInterface interfaces_s_axi_wstrb DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_wstrb IconText {interfaces_s_axi_wstrb}
+	dict set TopLevelPortInterface interfaces_s_axi_wstrb Direction in
+	dict set TopLevelPortInterface interfaces_s_axi_wstrb Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_wstrb Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_wstrb InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_wstrb InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_wstrb ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_wstrb Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_wstrb IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_wvalid Name {interfaces_s_axi_wvalid}
+	dict set TopLevelPortInterface interfaces_s_axi_wvalid Type -
+	dict set TopLevelPortInterface interfaces_s_axi_wvalid ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_wvalid BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_wvalid Width 1
+	dict set TopLevelPortInterface interfaces_s_axi_wvalid DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_wvalid IconText {interfaces_s_axi_wvalid}
+	dict set TopLevelPortInterface interfaces_s_axi_wvalid Direction in
+	dict set TopLevelPortInterface interfaces_s_axi_wvalid Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_wvalid Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_wvalid InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_wvalid InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_wvalid ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_wvalid Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_wvalid IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_wready Name {interfaces_s_axi_wready}
+	dict set TopLevelPortInterface interfaces_s_axi_wready Type -
+	dict set TopLevelPortInterface interfaces_s_axi_wready ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_wready BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_wready Width 1
+	dict set TopLevelPortInterface interfaces_s_axi_wready DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_wready IconText {interfaces_s_axi_wready}
+	dict set TopLevelPortInterface interfaces_s_axi_wready Direction out
+	dict set TopLevelPortInterface interfaces_s_axi_wready Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_wready Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_wready InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_wready InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_wready ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_wready Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_wready IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_bresp Name {interfaces_s_axi_bresp}
+	dict set TopLevelPortInterface interfaces_s_axi_bresp Type -
+	dict set TopLevelPortInterface interfaces_s_axi_bresp ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_bresp BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_bresp Width 2
+	dict set TopLevelPortInterface interfaces_s_axi_bresp DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_bresp IconText {interfaces_s_axi_bresp}
+	dict set TopLevelPortInterface interfaces_s_axi_bresp Direction out
+	dict set TopLevelPortInterface interfaces_s_axi_bresp Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_bresp Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_bresp InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_bresp InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_bresp ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_bresp Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_bresp IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_bvalid Name {interfaces_s_axi_bvalid}
+	dict set TopLevelPortInterface interfaces_s_axi_bvalid Type -
+	dict set TopLevelPortInterface interfaces_s_axi_bvalid ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_bvalid BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_bvalid Width 1
+	dict set TopLevelPortInterface interfaces_s_axi_bvalid DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_bvalid IconText {interfaces_s_axi_bvalid}
+	dict set TopLevelPortInterface interfaces_s_axi_bvalid Direction out
+	dict set TopLevelPortInterface interfaces_s_axi_bvalid Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_bvalid Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_bvalid InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_bvalid InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_bvalid ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_bvalid Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_bvalid IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_bready Name {interfaces_s_axi_bready}
+	dict set TopLevelPortInterface interfaces_s_axi_bready Type -
+	dict set TopLevelPortInterface interfaces_s_axi_bready ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_bready BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_bready Width 1
+	dict set TopLevelPortInterface interfaces_s_axi_bready DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_bready IconText {interfaces_s_axi_bready}
+	dict set TopLevelPortInterface interfaces_s_axi_bready Direction in
+	dict set TopLevelPortInterface interfaces_s_axi_bready Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_bready Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_bready InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_bready InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_bready ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_bready Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_bready IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_araddr Name {interfaces_s_axi_araddr}
+	dict set TopLevelPortInterface interfaces_s_axi_araddr Type -
+	dict set TopLevelPortInterface interfaces_s_axi_araddr ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_araddr BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_araddr Width 6
+	dict set TopLevelPortInterface interfaces_s_axi_araddr DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_araddr IconText {interfaces_s_axi_araddr}
+	dict set TopLevelPortInterface interfaces_s_axi_araddr Direction in
+	dict set TopLevelPortInterface interfaces_s_axi_araddr Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_araddr Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_araddr InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_araddr InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_araddr ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_araddr Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_araddr IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_arvalid Name {interfaces_s_axi_arvalid}
+	dict set TopLevelPortInterface interfaces_s_axi_arvalid Type -
+	dict set TopLevelPortInterface interfaces_s_axi_arvalid ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_arvalid BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_arvalid Width 1
+	dict set TopLevelPortInterface interfaces_s_axi_arvalid DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_arvalid IconText {interfaces_s_axi_arvalid}
+	dict set TopLevelPortInterface interfaces_s_axi_arvalid Direction in
+	dict set TopLevelPortInterface interfaces_s_axi_arvalid Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_arvalid Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_arvalid InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_arvalid InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_arvalid ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_arvalid Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_arvalid IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_arready Name {interfaces_s_axi_arready}
+	dict set TopLevelPortInterface interfaces_s_axi_arready Type -
+	dict set TopLevelPortInterface interfaces_s_axi_arready ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_arready BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_arready Width 1
+	dict set TopLevelPortInterface interfaces_s_axi_arready DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_arready IconText {interfaces_s_axi_arready}
+	dict set TopLevelPortInterface interfaces_s_axi_arready Direction out
+	dict set TopLevelPortInterface interfaces_s_axi_arready Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_arready Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_arready InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_arready InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_arready ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_arready Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_arready IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_rdata Name {interfaces_s_axi_rdata}
+	dict set TopLevelPortInterface interfaces_s_axi_rdata Type -
+	dict set TopLevelPortInterface interfaces_s_axi_rdata ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_rdata BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_rdata Width 32
+	dict set TopLevelPortInterface interfaces_s_axi_rdata DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_rdata IconText {interfaces_s_axi_rdata}
+	dict set TopLevelPortInterface interfaces_s_axi_rdata Direction out
+	dict set TopLevelPortInterface interfaces_s_axi_rdata Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_rdata Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_rdata InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_rdata InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_rdata ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_rdata Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_rdata IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_rresp Name {interfaces_s_axi_rresp}
+	dict set TopLevelPortInterface interfaces_s_axi_rresp Type -
+	dict set TopLevelPortInterface interfaces_s_axi_rresp ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_rresp BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_rresp Width 2
+	dict set TopLevelPortInterface interfaces_s_axi_rresp DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_rresp IconText {interfaces_s_axi_rresp}
+	dict set TopLevelPortInterface interfaces_s_axi_rresp Direction out
+	dict set TopLevelPortInterface interfaces_s_axi_rresp Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_rresp Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_rresp InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_rresp InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_rresp ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_rresp Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_rresp IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_rvalid Name {interfaces_s_axi_rvalid}
+	dict set TopLevelPortInterface interfaces_s_axi_rvalid Type -
+	dict set TopLevelPortInterface interfaces_s_axi_rvalid ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_rvalid BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_rvalid Width 1
+	dict set TopLevelPortInterface interfaces_s_axi_rvalid DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_rvalid IconText {interfaces_s_axi_rvalid}
+	dict set TopLevelPortInterface interfaces_s_axi_rvalid Direction out
+	dict set TopLevelPortInterface interfaces_s_axi_rvalid Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_rvalid Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_rvalid InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_rvalid InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_rvalid ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_rvalid Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_rvalid IOStandard {}
+	dict set TopLevelPortInterface interfaces_s_axi_rready Name {interfaces_s_axi_rready}
+	dict set TopLevelPortInterface interfaces_s_axi_rready Type -
+	dict set TopLevelPortInterface interfaces_s_axi_rready ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface interfaces_s_axi_rready BinaryPoint 0
+	dict set TopLevelPortInterface interfaces_s_axi_rready Width 1
+	dict set TopLevelPortInterface interfaces_s_axi_rready DatFile {}
+	dict set TopLevelPortInterface interfaces_s_axi_rready IconText {interfaces_s_axi_rready}
+	dict set TopLevelPortInterface interfaces_s_axi_rready Direction in
+	dict set TopLevelPortInterface interfaces_s_axi_rready Period 1
+	dict set TopLevelPortInterface interfaces_s_axi_rready Interface 5
+	dict set TopLevelPortInterface interfaces_s_axi_rready InterfaceName {}
+	dict set TopLevelPortInterface interfaces_s_axi_rready InterfaceString {WIRE_AXI_LITE}
+	dict set TopLevelPortInterface interfaces_s_axi_rready ClockDomain {}
+	dict set TopLevelPortInterface interfaces_s_axi_rready Locs {}
+	dict set TopLevelPortInterface interfaces_s_axi_rready IOStandard {}
+	dict set TopLevelPortInterface clk Name {clk}
+	dict set TopLevelPortInterface clk Type -
+	dict set TopLevelPortInterface clk ArithmeticType xlUnsigned
+	dict set TopLevelPortInterface clk BinaryPoint 0
+	dict set TopLevelPortInterface clk Width 1
+	dict set TopLevelPortInterface clk DatFile {}
+	dict set TopLevelPortInterface clk Direction in
+	dict set TopLevelPortInterface clk Period 1
+	dict set TopLevelPortInterface clk Interface 6
+	dict set TopLevelPortInterface clk InterfaceName {}
+	dict set TopLevelPortInterface clk InterfaceString {CLOCK}
+	dict set TopLevelPortInterface clk ClockDomain {interfaces}
+	dict set TopLevelPortInterface clk Locs {}
+	dict set TopLevelPortInterface clk IOStandard {}
+	dict set TopLevelPortInterface clk AssociatedInterfaces {interfaces_s_axi }
+	dict set TopLevelPortInterface clk AssociatedResets {interfaces_aresetn }
+	set MemoryMappedPort {}
+	dict set MemoryMappedPort zybo_led Name {zybo_led}
+	dict set MemoryMappedPort zybo_led Type Bool
+	dict set MemoryMappedPort zybo_led ArithmeticType xlUnsigned
+	dict set MemoryMappedPort zybo_led BinaryPoint 0
+	dict set MemoryMappedPort zybo_led Width 1
+	dict set MemoryMappedPort zybo_led DatFile {interfaces_zybo_led.dat}
+	dict set MemoryMappedPort zybo_led AddressOffset 0
+	dict set MemoryMappedPort zybo_led IconText {zybo_led}
+	dict set MemoryMappedPort zybo_led Direction in
+	dict set MemoryMappedPort zybo_led Period 1
+	dict set MemoryMappedPort zybo_led Interface 2
+	dict set MemoryMappedPort zybo_led InterfaceName {}
+	dict set MemoryMappedPort zybo_led InterfaceString {CONTROL}
+	dict set MemoryMappedPort zybo_led ClockDomain {interfaces}
+	dict set MemoryMappedPort zybo_led Locs {}
+	dict set MemoryMappedPort zybo_led IOStandard {}
+	dict set MemoryMappedPort zybo_en_gate Name {zybo_en_gate}
+	dict set MemoryMappedPort zybo_en_gate Type Bool
+	dict set MemoryMappedPort zybo_en_gate ArithmeticType xlUnsigned
+	dict set MemoryMappedPort zybo_en_gate BinaryPoint 0
+	dict set MemoryMappedPort zybo_en_gate Width 1
+	dict set MemoryMappedPort zybo_en_gate DatFile {interfaces_zybo_en_gate.dat}
+	dict set MemoryMappedPort zybo_en_gate AddressOffset 4
+	dict set MemoryMappedPort zybo_en_gate IconText {zybo_en_gate}
+	dict set MemoryMappedPort zybo_en_gate Direction in
+	dict set MemoryMappedPort zybo_en_gate Period 1
+	dict set MemoryMappedPort zybo_en_gate Interface 2
+	dict set MemoryMappedPort zybo_en_gate InterfaceName {}
+	dict set MemoryMappedPort zybo_en_gate InterfaceString {CONTROL}
+	dict set MemoryMappedPort zybo_en_gate ClockDomain {interfaces}
+	dict set MemoryMappedPort zybo_en_gate Locs {}
+	dict set MemoryMappedPort zybo_en_gate IOStandard {}
+	dict set MemoryMappedPort otp_led Name {otp_led}
+	dict set MemoryMappedPort otp_led Type Bool
+	dict set MemoryMappedPort otp_led ArithmeticType xlUnsigned
+	dict set MemoryMappedPort otp_led BinaryPoint 0
+	dict set MemoryMappedPort otp_led Width 1
+	dict set MemoryMappedPort otp_led DatFile {interfaces_otp_led.dat}
+	dict set MemoryMappedPort otp_led AddressOffset 8
+	dict set MemoryMappedPort otp_led IconText {otp_led}
+	dict set MemoryMappedPort otp_led Direction in
+	dict set MemoryMappedPort otp_led Period 1
+	dict set MemoryMappedPort otp_led Interface 2
+	dict set MemoryMappedPort otp_led InterfaceName {}
+	dict set MemoryMappedPort otp_led InterfaceString {CONTROL}
+	dict set MemoryMappedPort otp_led ClockDomain {interfaces}
+	dict set MemoryMappedPort otp_led Locs {}
+	dict set MemoryMappedPort otp_led IOStandard {}
+	dict set MemoryMappedPort ocp_led Name {ocp_led}
+	dict set MemoryMappedPort ocp_led Type Bool
+	dict set MemoryMappedPort ocp_led ArithmeticType xlUnsigned
+	dict set MemoryMappedPort ocp_led BinaryPoint 0
+	dict set MemoryMappedPort ocp_led Width 1
+	dict set MemoryMappedPort ocp_led DatFile {interfaces_ocp_led.dat}
+	dict set MemoryMappedPort ocp_led AddressOffset 12
+	dict set MemoryMappedPort ocp_led IconText {ocp_led}
+	dict set MemoryMappedPort ocp_led Direction in
+	dict set MemoryMappedPort ocp_led Period 1
+	dict set MemoryMappedPort ocp_led Interface 2
+	dict set MemoryMappedPort ocp_led InterfaceName {}
+	dict set MemoryMappedPort ocp_led InterfaceString {CONTROL}
+	dict set MemoryMappedPort ocp_led ClockDomain {interfaces}
+	dict set MemoryMappedPort ocp_led Locs {}
+	dict set MemoryMappedPort ocp_led IOStandard {}
+	dict set MemoryMappedPort main_relay Name {main_relay}
+	dict set MemoryMappedPort main_relay Type Bool
+	dict set MemoryMappedPort main_relay ArithmeticType xlUnsigned
+	dict set MemoryMappedPort main_relay BinaryPoint 0
+	dict set MemoryMappedPort main_relay Width 1
+	dict set MemoryMappedPort main_relay DatFile {interfaces_main_relay.dat}
+	dict set MemoryMappedPort main_relay AddressOffset 16
+	dict set MemoryMappedPort main_relay IconText {main_relay}
+	dict set MemoryMappedPort main_relay Direction in
+	dict set MemoryMappedPort main_relay Period 1
+	dict set MemoryMappedPort main_relay Interface 2
+	dict set MemoryMappedPort main_relay InterfaceName {}
+	dict set MemoryMappedPort main_relay InterfaceString {CONTROL}
+	dict set MemoryMappedPort main_relay ClockDomain {interfaces}
+	dict set MemoryMappedPort main_relay Locs {}
+	dict set MemoryMappedPort main_relay IOStandard {}
+	dict set MemoryMappedPort ir_led Name {ir_led}
+	dict set MemoryMappedPort ir_led Type Bool
+	dict set MemoryMappedPort ir_led ArithmeticType xlUnsigned
+	dict set MemoryMappedPort ir_led BinaryPoint 0
+	dict set MemoryMappedPort ir_led Width 1
+	dict set MemoryMappedPort ir_led DatFile {interfaces_ir_led.dat}
+	dict set MemoryMappedPort ir_led AddressOffset 20
+	dict set MemoryMappedPort ir_led IconText {ir_led}
+	dict set MemoryMappedPort ir_led Direction in
+	dict set MemoryMappedPort ir_led Period 1
+	dict set MemoryMappedPort ir_led Interface 2
+	dict set MemoryMappedPort ir_led InterfaceName {}
+	dict set MemoryMappedPort ir_led InterfaceString {CONTROL}
+	dict set MemoryMappedPort ir_led ClockDomain {interfaces}
+	dict set MemoryMappedPort ir_led Locs {}
+	dict set MemoryMappedPort ir_led IOStandard {}
+	dict set MemoryMappedPort ir_enable Name {ir_enable}
+	dict set MemoryMappedPort ir_enable Type Bool
+	dict set MemoryMappedPort ir_enable ArithmeticType xlUnsigned
+	dict set MemoryMappedPort ir_enable BinaryPoint 0
+	dict set MemoryMappedPort ir_enable Width 1
+	dict set MemoryMappedPort ir_enable DatFile {interfaces_ir_enable.dat}
+	dict set MemoryMappedPort ir_enable AddressOffset 24
+	dict set MemoryMappedPort ir_enable IconText {ir_enable}
+	dict set MemoryMappedPort ir_enable Direction in
+	dict set MemoryMappedPort ir_enable Period 1
+	dict set MemoryMappedPort ir_enable Interface 2
+	dict set MemoryMappedPort ir_enable InterfaceName {}
+	dict set MemoryMappedPort ir_enable InterfaceString {CONTROL}
+	dict set MemoryMappedPort ir_enable ClockDomain {interfaces}
+	dict set MemoryMappedPort ir_enable Locs {}
+	dict set MemoryMappedPort ir_enable IOStandard {}
+	dict set MemoryMappedPort drive_enable Name {drive_enable}
+	dict set MemoryMappedPort drive_enable Type Bool
+	dict set MemoryMappedPort drive_enable ArithmeticType xlUnsigned
+	dict set MemoryMappedPort drive_enable BinaryPoint 0
+	dict set MemoryMappedPort drive_enable Width 1
+	dict set MemoryMappedPort drive_enable DatFile {interfaces_drive_enable.dat}
+	dict set MemoryMappedPort drive_enable AddressOffset 28
+	dict set MemoryMappedPort drive_enable IconText {drive_enable}
+	dict set MemoryMappedPort drive_enable Direction out
+	dict set MemoryMappedPort drive_enable Period 1
+	dict set MemoryMappedPort drive_enable Interface 2
+	dict set MemoryMappedPort drive_enable InterfaceName {}
+	dict set MemoryMappedPort drive_enable InterfaceString {CONTROL}
+	dict set MemoryMappedPort drive_enable ClockDomain {interfaces}
+	dict set MemoryMappedPort drive_enable Locs {}
+	dict set MemoryMappedPort drive_enable IOStandard {}
+	dict set MemoryMappedPort en_gate Name {en_gate}
+	dict set MemoryMappedPort en_gate Type Bool
+	dict set MemoryMappedPort en_gate ArithmeticType xlUnsigned
+	dict set MemoryMappedPort en_gate BinaryPoint 0
+	dict set MemoryMappedPort en_gate Width 1
+	dict set MemoryMappedPort en_gate DatFile {interfaces_en_gate.dat}
+	dict set MemoryMappedPort en_gate AddressOffset 32
+	dict set MemoryMappedPort en_gate IconText {en_gate}
+	dict set MemoryMappedPort en_gate Direction out
+	dict set MemoryMappedPort en_gate Period 1
+	dict set MemoryMappedPort en_gate Interface 2
+	dict set MemoryMappedPort en_gate InterfaceName {}
+	dict set MemoryMappedPort en_gate InterfaceString {CONTROL}
+	dict set MemoryMappedPort en_gate ClockDomain {interfaces}
+	dict set MemoryMappedPort en_gate Locs {}
+	dict set MemoryMappedPort en_gate IOStandard {}
+	dict set MemoryMappedPort fault Name {fault}
+	dict set MemoryMappedPort fault Type Bool
+	dict set MemoryMappedPort fault ArithmeticType xlUnsigned
+	dict set MemoryMappedPort fault BinaryPoint 0
+	dict set MemoryMappedPort fault Width 1
+	dict set MemoryMappedPort fault DatFile {interfaces_fault.dat}
+	dict set MemoryMappedPort fault AddressOffset 36
+	dict set MemoryMappedPort fault IconText {fault}
+	dict set MemoryMappedPort fault Direction out
+	dict set MemoryMappedPort fault Period 1
+	dict set MemoryMappedPort fault Interface 2
+	dict set MemoryMappedPort fault InterfaceName {}
+	dict set MemoryMappedPort fault InterfaceString {CONTROL}
+	dict set MemoryMappedPort fault ClockDomain {interfaces}
+	dict set MemoryMappedPort fault Locs {}
+	dict set MemoryMappedPort fault IOStandard {}
+	dict set MemoryMappedPort ocp_en_gate Name {ocp_en_gate}
+	dict set MemoryMappedPort ocp_en_gate Type Bool
+	dict set MemoryMappedPort ocp_en_gate ArithmeticType xlUnsigned
+	dict set MemoryMappedPort ocp_en_gate BinaryPoint 0
+	dict set MemoryMappedPort ocp_en_gate Width 1
+	dict set MemoryMappedPort ocp_en_gate DatFile {interfaces_ocp_en_gate.dat}
+	dict set MemoryMappedPort ocp_en_gate AddressOffset 40
+	dict set MemoryMappedPort ocp_en_gate IconText {ocp_en_gate}
+	dict set MemoryMappedPort ocp_en_gate Direction out
+	dict set MemoryMappedPort ocp_en_gate Period 1
+	dict set MemoryMappedPort ocp_en_gate Interface 2
+	dict set MemoryMappedPort ocp_en_gate InterfaceName {}
+	dict set MemoryMappedPort ocp_en_gate InterfaceString {CONTROL}
+	dict set MemoryMappedPort ocp_en_gate ClockDomain {interfaces}
+	dict set MemoryMappedPort ocp_en_gate Locs {}
+	dict set MemoryMappedPort ocp_en_gate IOStandard {}
+	dict set MemoryMappedPort octv Name {octv}
+	dict set MemoryMappedPort octv Type Bool
+	dict set MemoryMappedPort octv ArithmeticType xlUnsigned
+	dict set MemoryMappedPort octv BinaryPoint 0
+	dict set MemoryMappedPort octv Width 1
+	dict set MemoryMappedPort octv DatFile {interfaces_octv.dat}
+	dict set MemoryMappedPort octv AddressOffset 44
+	dict set MemoryMappedPort octv IconText {octv}
+	dict set MemoryMappedPort octv Direction out
+	dict set MemoryMappedPort octv Period 1
+	dict set MemoryMappedPort octv Interface 2
+	dict set MemoryMappedPort octv InterfaceName {}
+	dict set MemoryMappedPort octv InterfaceString {CONTROL}
+	dict set MemoryMappedPort octv ClockDomain {interfaces}
+	dict set MemoryMappedPort octv Locs {}
+	dict set MemoryMappedPort octv IOStandard {}
+	dict set MemoryMappedPort otp_en_gate Name {otp_en_gate}
+	dict set MemoryMappedPort otp_en_gate Type Bool
+	dict set MemoryMappedPort otp_en_gate ArithmeticType xlUnsigned
+	dict set MemoryMappedPort otp_en_gate BinaryPoint 0
+	dict set MemoryMappedPort otp_en_gate Width 1
+	dict set MemoryMappedPort otp_en_gate DatFile {interfaces_otp_en_gate.dat}
+	dict set MemoryMappedPort otp_en_gate AddressOffset 48
+	dict set MemoryMappedPort otp_en_gate IconText {otp_en_gate}
+	dict set MemoryMappedPort otp_en_gate Direction out
+	dict set MemoryMappedPort otp_en_gate Period 1
+	dict set MemoryMappedPort otp_en_gate Interface 2
+	dict set MemoryMappedPort otp_en_gate InterfaceName {}
+	dict set MemoryMappedPort otp_en_gate InterfaceString {CONTROL}
+	dict set MemoryMappedPort otp_en_gate ClockDomain {interfaces}
+	dict set MemoryMappedPort otp_en_gate Locs {}
+	dict set MemoryMappedPort otp_en_gate IOStandard {}
+	dict set MemoryMappedPort powergood Name {powergood}
+	dict set MemoryMappedPort powergood Type Bool
+	dict set MemoryMappedPort powergood ArithmeticType xlUnsigned
+	dict set MemoryMappedPort powergood BinaryPoint 0
+	dict set MemoryMappedPort powergood Width 1
+	dict set MemoryMappedPort powergood DatFile {interfaces_powergood.dat}
+	dict set MemoryMappedPort powergood AddressOffset 52
+	dict set MemoryMappedPort powergood IconText {powergood}
+	dict set MemoryMappedPort powergood Direction out
+	dict set MemoryMappedPort powergood Period 1
+	dict set MemoryMappedPort powergood Interface 2
+	dict set MemoryMappedPort powergood InterfaceName {}
+	dict set MemoryMappedPort powergood InterfaceString {CONTROL}
+	dict set MemoryMappedPort powergood ClockDomain {interfaces}
+	dict set MemoryMappedPort powergood Locs {}
+	dict set MemoryMappedPort powergood IOStandard {}
+	dict set MemoryMappedPort counter Name {counter}
+	dict set MemoryMappedPort counter Type UFix_8_0
+	dict set MemoryMappedPort counter ArithmeticType xlUnsigned
+	dict set MemoryMappedPort counter BinaryPoint 0
+	dict set MemoryMappedPort counter Width 8
+	dict set MemoryMappedPort counter DatFile {interfaces_counter.dat}
+	dict set MemoryMappedPort counter AddressOffset 56
+	dict set MemoryMappedPort counter IconText {counter}
+	dict set MemoryMappedPort counter Direction out
+	dict set MemoryMappedPort counter Period 1
+	dict set MemoryMappedPort counter Interface 2
+	dict set MemoryMappedPort counter InterfaceName {}
+	dict set MemoryMappedPort counter InterfaceString {CONTROL}
+	dict set MemoryMappedPort counter ClockDomain {interfaces}
+	dict set MemoryMappedPort counter Locs {}
+	dict set MemoryMappedPort counter IOStandard {}
+}
+
+source SgPaProject.tcl
+::xilinx::dsp::planaheadworker::dsp_create_project

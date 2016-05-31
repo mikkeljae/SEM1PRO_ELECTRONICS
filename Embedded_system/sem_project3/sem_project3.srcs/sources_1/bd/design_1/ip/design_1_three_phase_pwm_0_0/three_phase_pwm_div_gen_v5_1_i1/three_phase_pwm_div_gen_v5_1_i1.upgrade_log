@@ -1,0 +1,16 @@
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.4 (lin64) Build 1412921 Wed Nov 18 09:44:32 MST 2015
+| Date         : Mon May 23 19:34:08 2016
+| Host         : mikkel running 64-bit Ubuntu 15.10
+| Command      : upgrade_ip
+| Device       : xc7z010clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'three_phase_pwm_div_gen_v5_1_i1'
+
+1. Summary
+----------
+
+SUCCESS in the update of three_phase_pwm_div_gen_v5_1_i1 (xilinx.com:ip:div_gen:5.1 (Rev. 9)) to current project options.
+

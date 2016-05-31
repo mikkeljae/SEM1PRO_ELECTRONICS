@@ -1,0 +1,10 @@
+
+
+OPTION psf_version = 2.1;
+
+BEGIN DRIVER encoder_rm28md
+	OPTION supported_peripherals = (encoder_rm28md);
+	OPTION copyfiles = all;
+	OPTION VERSION = 1.0;
+	OPTION NAME = encoder_rm28md;
+END DRIVER

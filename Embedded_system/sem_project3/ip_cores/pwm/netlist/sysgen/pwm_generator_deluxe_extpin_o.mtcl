@@ -1,0 +1,6 @@
+proc generate {drv_handle} {
+    xdefine_include_file $drv_handle "xparameters.h" "pwm_generator_deluxe_extpin_o" "NUM_INSTANCES" "DEVICE_ID" "C_PWM_GENERATOR_DELUXE_EXTPIN_O_S_AXI_BASEADDR" "C_PWM_GENERATOR_DELUXE_EXTPIN_O_S_AXI_HIGHADDR" 
+    xdefine_config_file $drv_handle "pwm_generator_deluxe_extpin_o_g.c" "pwm_generator_deluxe_extpin_o" "DEVICE_ID" "C_PWM_GENERATOR_DELUXE_EXTPIN_O_S_AXI_BASEADDR" 
+    xdefine_canonical_xpars $drv_handle "xparameters.h" "pwm_generator_deluxe_extpin_o" "DEVICE_ID" "C_PWM_GENERATOR_DELUXE_EXTPIN_O_S_AXI_BASEADDR" "C_PWM_GENERATOR_DELUXE_EXTPIN_O_S_AXI_HIGHADDR" 
+
+}

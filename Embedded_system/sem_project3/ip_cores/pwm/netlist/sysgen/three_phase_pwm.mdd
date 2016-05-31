@@ -1,0 +1,8 @@
+OPTION psf_version = 2.1;
+BEGIN driver three_phase_pwm
+ OPTION supported_peripherals = (three_phase_pwm_v1_0);
+ OPTION driver_state = ACTIVE;
+ OPTION copyfiles = all;
+ OPTION name = three_phase_pwm;
+ OPTION version = 1.0;
+END driver

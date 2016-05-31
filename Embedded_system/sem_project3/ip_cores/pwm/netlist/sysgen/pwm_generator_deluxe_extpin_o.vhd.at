@@ -1,0 +1,103 @@
+{
+  'Line_111' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct/constant1',
+    'Instance' => 'constant1',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o/Constant1'
+  },
+  'Line_118' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct/constant2',
+    'Instance' => 'constant2',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o/Constant2'
+  },
+  'Line_125' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct/constant5',
+    'Instance' => 'constant5',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o/Constant5'
+  },
+  'Line_132' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct/counter',
+    'Instance' => 'counter',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o/Counter'
+  },
+  'Line_147' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct/divide',
+    'Instance' => 'divide',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o/Divide'
+  },
+  'Line_157' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct/divide1',
+    'Instance' => 'divide1',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o/Divide1'
+  },
+  'Line_167' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct/mcode',
+    'Instance' => 'mcode',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o/MCode'
+  },
+  'Line_176' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct/mult',
+    'Instance' => 'mult',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o/Mult'
+  },
+  'Line_213' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct/mult1',
+    'Instance' => 'mult1',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o/Mult1'
+  },
+  'Line_250' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct/register_x0',
+    'Instance' => 'register_x0',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o/Register'
+  },
+  'Line_263' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct/relational',
+    'Instance' => 'relational',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o/Relational'
+  },
+  'Line_272' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct/relational1',
+    'Instance' => 'relational1',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o/Relational1'
+  },
+  'Line_281' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct/relational2',
+    'Instance' => 'relational2',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o/Relational2'
+  },
+  'Line_290' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct/zybo_frequency',
+    'Instance' => 'zybo_frequency',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o/zybo frequency
+'
+  },
+  'Line_314' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_default_clock_driver/clockdriver',
+    'Instance' => 'clockdriver',
+    'SimulinkInstance' => ''
+  },
+  'Line_368' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_axi_lite_interface',
+    'Instance' => 'pwm_generator_deluxe_extpin_o_axi_lite_interface',
+    'SimulinkInstance' => ''
+  },
+  'Line_395' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_default_clock_driver',
+    'Instance' => 'pwm_generator_deluxe_extpin_o_default_clock_driver',
+    'SimulinkInstance' => ''
+  },
+  'Line_403' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct',
+    'Instance' => 'pwm_generator_deluxe_extpin_o_struct',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o'
+  },
+  'Line_49' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct/addsub',
+    'Instance' => 'addsub',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o/AddSub'
+  },
+  'Line_80' => {
+    'CodeInstance' => 'pwm_generator_deluxe_extpin_o_struct/addsub1',
+    'Instance' => 'addsub1',
+    'SimulinkInstance' => 'pwm_generator_deluxe_extpin_o/AddSub1'
+  }
+}

@@ -1,0 +1,43 @@
+#-----------------------------------------------------------
+# Vivado v2015.4 (64-bit)
+# SW Build 1412921 on Wed Nov 18 09:44:32 MST 2015
+# IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
+# Start of session at: Mon May 16 09:42:37 2016
+# Process ID: 3933
+# Current directory: /home/mikkeljaedicke/Zynq_Book/sem_project/ip_cores/io/netlist
+# Command line: vivado -mode batch -source ProjectGeneration.tcl -notrace
+# Log file: /home/mikkeljaedicke/Zynq_Book/sem_project/ip_cores/io/netlist/vivado.log
+# Journal file: /home/mikkeljaedicke/Zynq_Book/sem_project/ip_cores/io/netlist/vivado.jou
+#-----------------------------------------------------------
+source ProjectGeneration.tcl -notrace
+******* Inferring the Board from the Device Name *******
+IP Repository Located at : /opt/Xilinx/Vivado/2015.4/data/ip
+****** Webtalk v2015.4 (64-bit)
+  **** SW Build 1412921 on Wed Nov 18 09:44:32 MST 2015
+  **** IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
+    ** Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+
+source /home/mikkeljaedicke/Zynq_Book/sem_project/ip_cores/io/netlist/ip_catalog/io.hw/webtalk/labtool_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Mon May 16 09:42:47 2016...
+Scanning sources...
+Finished scanning sources
+WARNING: [Coretcl 2-176] No IPs found
+Adding File /home/mikkeljaedicke/Zynq_Book/sem_project/ip_cores/io/netlist/sysgen/io.xdc
+Adding File /home/mikkeljaedicke/Zynq_Book/sem_project/ip_cores/io/netlist/sysgen/io.htm
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2015.4/data/ip'.
+INFO: [IP_Flow 19-1793] Cannot infer any bus interface that matches bus definition xilinx.com:interface:aximm:1.0.
+INFO: [IP_Flow 19-1793] Cannot infer any bus interface that matches bus definition xilinx.com:interface:axis:1.0.
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+WARNING: [Coretcl 2-176] No IPs found
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/mikkeljaedicke/Zynq_Book/sem_project/ip_cores/io/netlist/ip'.
+WARNING: [IP_Flow 19-3656] If you move the project, the path for repository '/home/mikkeljaedicke/Zynq_Book/sem_project/ip_cores/io/netlist/ip' may become invalid. A better location for the repostory would be in a path adjacent to the project. (Current project location is '/home/mikkeljaedicke/Zynq_Book/sem_project/ip_cores/io/netlist/ip_catalog'.)
+0
+Wrote  : </home/mikkeljaedicke/Zynq_Book/sem_project/ip_cores/io/netlist/ip_catalog/io.srcs/sources_1/bd/io_bd/io_bd.bd> 
+WARNING: [BD 5-232] No interface pins matched 'get_bd_intf_pins /io_1/*'
+WARNING: [BD 5-232] No interface pins matched 'get_bd_intf_pins /io_1/*'
+WARNING: [BD 5-232] No interface pins matched 'get_bd_intf_pins /io_1/*'
+Wrote  : </home/mikkeljaedicke/Zynq_Book/sem_project/ip_cores/io/netlist/ip_catalog/io.srcs/sources_1/bd/io_bd/io_bd.bd> 
+INFO: [Common 17-206] Exiting Vivado at Mon May 16 09:42:49 2016...

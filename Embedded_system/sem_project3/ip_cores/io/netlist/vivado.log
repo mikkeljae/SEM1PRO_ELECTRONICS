@@ -1,0 +1,51 @@
+#-----------------------------------------------------------
+# Vivado v2015.4 (64-bit)
+# SW Build 1412921 on Wed Nov 18 09:44:32 MST 2015
+# IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
+# Start of session at: Mon May 16 16:28:34 2016
+# Process ID: 14958
+# Current directory: /home/mikkeljaedicke/Zynq_Book/sem_project2/ip_cores/io/netlist
+# Command line: vivado -mode batch -source ProjectGeneration.tcl -notrace
+# Log file: /home/mikkeljaedicke/Zynq_Book/sem_project2/ip_cores/io/netlist/vivado.log
+# Journal file: /home/mikkeljaedicke/Zynq_Book/sem_project2/ip_cores/io/netlist/vivado.jou
+#-----------------------------------------------------------
+source ProjectGeneration.tcl -notrace
+******* Inferring the Board from the Device Name *******
+WARNING: [Coretcl 2-176] No IPs found
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2015.4/data/ip'.
+WARNING: [Vivado 12-3523] Attempt to change 'Component_Name' from 'interfaces_c_counter_binary_v12_0_i0' to 'interfaces_c_counter_binary_v12_0_i0' is not allowed and is ignored.
+IP Repository Located at : /opt/Xilinx/Vivado/2015.4/data/ip
+****** Webtalk v2015.4 (64-bit)
+  **** SW Build 1412921 on Wed Nov 18 09:44:32 MST 2015
+  **** IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
+    ** Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+
+source /home/mikkeljaedicke/Zynq_Book/sem_project2/ip_cores/io/netlist/ip_catalog/interfaces.hw/webtalk/labtool_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Mon May 16 16:28:46 2016...
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2015.4/data/ip'.
+Adding File /home/mikkeljaedicke/Zynq_Book/sem_project2/ip_cores/io/netlist/ip_catalog/interfaces.srcs/sources_1/ip/interfaces_c_counter_binary_v12_0_i0/interfaces_c_counter_binary_v12_0_i0.xci
+Adding File /home/mikkeljaedicke/Zynq_Book/sem_project2/ip_cores/io/netlist/sysgen/interfaces.xdc
+Adding File /home/mikkeljaedicke/Zynq_Book/sem_project2/ip_cores/io/netlist/sysgen/interfaces.htm
+INFO: [IP_Flow 19-2228] Inferred bus interface "interfaces_s_axi" of definition type "xilinx.com:interface:aximm:1.0".
+INFO: [IP_Flow 19-1793] Cannot infer any bus interface that matches bus definition xilinx.com:interface:axis:1.0.
+INFO: [IP_Flow 19-2228] Inferred bus interface "clk" of definition type "xilinx.com:signal:clock:1.0".
+CRITICAL WARNING: [IP_Flow 19-625] File Group 'xilinx_vhdlsynthesis (VHDL Synthesis)': One or more verilogSource files found added to the pure language VHDL file group: hdl/interfaces_axi_lite_interface_verilog.v,...
+CRITICAL WARNING: [IP_Flow 19-625] File Group 'xilinx_vhdlbehavioralsimulation (VHDL Simulation)': One or more verilogSource files found added to the pure language VHDL file group: hdl/interfaces_axi_lite_interface_verilog.v,...
+WARNING: [IP_Flow 19-4629] File Group 'xilinx_softwaredriver (Software Driver)': Requires either a MLD or a MDD file for Vivado SDK.  Neither have been added to file group: "xilinx_softwaredriver"
+Resolution: Add an MLD or MDD file for Vivado SDK support.
+INFO: [IP_Flow 19-2181] Payment Required is not set for this core.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/mikkeljaedicke/Zynq_Book/sem_project2/ip_cores/io/netlist/ip'.
+WARNING: [IP_Flow 19-3656] If you move the project, the path for repository '/home/mikkeljaedicke/Zynq_Book/sem_project2/ip_cores/io/netlist/ip' may become invalid. A better location for the repostory would be in a path adjacent to the project. (Current project location is '/home/mikkeljaedicke/Zynq_Book/sem_project2/ip_cores/io/netlist/ip_catalog'.)
+0
+Wrote  : </home/mikkeljaedicke/Zynq_Book/sem_project2/ip_cores/io/netlist/ip_catalog/interfaces.srcs/sources_1/bd/interfaces_bd/interfaces_bd.bd> 
+WARNING: [Boardtcl 53-1] No current board_part set.
+</interfaces_1/interfaces_s_axi/reg0> is being mapped into </processing_system_1/Data> at <0x43C00000 [ 64K ]>
+Wrote  : </home/mikkeljaedicke/Zynq_Book/sem_project2/ip_cores/io/netlist/ip_catalog/interfaces.srcs/sources_1/bd/interfaces_bd/interfaces_bd.bd> 
+INFO: [Common 17-206] Exiting Vivado at Mon May 16 16:28:56 2016...

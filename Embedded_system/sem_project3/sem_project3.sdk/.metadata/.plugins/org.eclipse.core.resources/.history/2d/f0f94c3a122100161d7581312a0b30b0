@@ -1,0 +1,614 @@
+/*****************************************************************************
+ * University of Southern Denmark
+ * Embedded C Programming (ECP)
+ *
+ * MODULENAME.: main.c
+ *
+ * PROJECT....: ECP
+ *
+ * DESCRIPTION: See module specification file (.h-file).
+ *
+ * Change Log:
+ ******************************************************************************
+ * Date    Id    Change
+ * YYMMDD
+ * --------------------
+ * 0902012  KHA   Module created.
+ *
+ *****************************************************************************/
+
+/***************************** Include files *******************************/
+
+//#include "khaOS/schedule.c"
+#include "khaOS/rtcs.h"
+#include "xgpio.h"
+#include "xparameters.h"
+#include "three_phase_pwm.h"
+#include "interfaces.h"
+#include "xadcps.h"
+#include "xspips.h"
+#include <math.h>
+
+/*****************************    Defines    *******************************/
+
+#define PI				3.14159265359
+#define GPIO_DEVICE_ID  XPAR_AXI_GPIO_0_DEVICE_ID		/* GPIO device that LEDs are connected to 		*/
+#define GPIO_SWITCH_ID  XPAR_AXI_GPIO_1_DEVICE_ID		/* GPIO device that switches are connected to 	*/
+#define LED_CHANNEL 1									/* GPIO port for LEDs 							*/
+#define PWM_DEVICE_ID XPAR_THREE_PHASE_PWM_0_DEVICE_ID	/* GPIO device for three phase pwm generator 	*/
+#define INTERFACE_DEVICE_ID XPAR_INTERFACES_0_DEVICE_ID	/* GPIO device for the interface IP core	 	*/
+#define XADC_DEVICE_ID XPAR_XADCPS_0_DEVICE_ID			/* GPIO device for the ADC						*/
+
+// Added definements due to an error in Vivado 2015.4 (normally placed in xparameters.h file)
+// New high adress can be found in adress editor (above block design).
+#define XPAR_ENCODER_RM28MD_0_S00_AXI_BASEADDR 0x43C30000
+#define XPAR_ENCODER_RM28MD_0_S00_AXI_HIGHADDR 0x43C3FFFF
+
+// RM28MD encoder, see [3] for more information// [3] RM28MD encoder ip-core (Blackboard)
+// Register name definements for register access method 2.
+#define RM28MD_POSITION					*((volatile uint32_t *)(XPAR_ENCODER_RM28MD_0_S00_AXI_BASEADDR))
+
+
+// MIO7.GPIO. NOTE MIO7 is configured as GPIO pin by the ARM9 hardware configuration
+// MIO7 GPIO registers, see ([2],381-390) and ([2], 1348-1350) for more information
+// Register name definements for register access method 2.
+#define GPIO_MASK_DATA_0_LSW			*((volatile uint32_t *)(XPAR_XGPIOPS_0_BASEADDR + 0x000))
+#define GPIO_DATA_0						*((volatile uint32_t *)(XPAR_XGPIOPS_0_BASEADDR + 0x040))
+#define GPIO_DATA_0_RO					*((volatile uint32_t *)(XPAR_XGPIOPS_0_BASEADDR + 0x060))
+#define GPIO_DIRM						*((volatile uint32_t *)(XPAR_XGPIOPS_0_BASEADDR + 0x204))
+#define GPIO_OEN_0						*((volatile uint32_t *)(XPAR_XGPIOPS_0_BASEADDR + 0x208))
+
+// converting RAW data from external source to voltage - Jørgens code
+#define XAdcPs_ExternalRawToVoltage(AdcData)			(((((float)(AdcData))* (1.0f))/65536.0f))
+#define XAdcPs_BiExternalRawToVoltage(AdcData)			(((((float)(AdcData))* (1.0f))/65536.0f)-1)
+
+#define SPI_DEVICE_ID			XPAR_XSPIPS_0_DEVICE_ID
+/*****************************   Constants   *******************************/
+
+/*****************************   Variables   *******************************/
+int led = 0x1;
+int t = 0;
+float va,vb,vc;
+int rotor_position_degrees;
+int rotor_position_radian;
+int rotor_position_degrees_e;
+int target_position_degree_e;
+float target_position_radian_e;
+uint32_t position;
+u32 ti = 1;
+u32 a_duty,b_duty,c_duty;
+XGpio Gpio;											/* GPIO Device driver instance 			*/
+XGpio Gpio_switch;									/* GPIO Device driver instance 			*/
+three_phase_pwm pwm_gen_inst;						/* Three phase pwm generator instance 	*/
+interfaces interface_inst;							/* Interface instance				 	*/
+static XAdcPs XAdcInst;      						/* XADC driver instance 				*/
+XSpiPs SPI;											/* The instance of the SPI device 		*/
+//HVorfor static? Spørg Jørgen?
+XAdcPs_Config *ConfigPtr;
+XAdcPs *XAdcInstPtr = &XAdcInst;
+
+float I_a, I_b, I_c;
+float V_sd, V_sq;
+float theta;
+
+/*****************************   Functions   *******************************/
+float adc_bipolar_rawtovoltage(u32 adc_data);
+s32 SPI_init(XSpiPs *SPI_inst, int device_id);
+
+void init_alive_task(void)
+{
+	int Status;
+
+	/* GPIO driver initialisation */
+	Status = XGpio_Initialize(&Gpio, GPIO_DEVICE_ID);
+	if (Status != XST_SUCCESS) {
+		xil_printf("LEDS failed!");
+	}
+
+	/*Set the direction for the LEDs to output. */
+	XGpio_SetDataDirection(&Gpio, LED_CHANNEL, 0x0);
+
+	//makes sure the task is stopped
+	_stop(0);
+
+	// Start task
+	_starts(ALIVE_TASK, MILLI_SEC(500));
+}
+
+void alive_task(void)
+{
+	// Toggles status LED every 1 sec.
+	XGpio_DiscreteWrite(&Gpio, LED_CHANNEL, led); //LED 1
+
+	/* Flip LEDs. */
+	led = ~led;
+
+	// Wait 1 sec.
+	_wait(MILLI_SEC(500));
+}
+
+void init_pwm_task(void){
+
+	//SHOULD BE MOVED SOMEWHERE ELSE!!!
+	/* GPIO driver initialisation */
+	int Status;
+	Status = XGpio_Initialize(&Gpio_switch, GPIO_SWITCH_ID);
+	if (Status != XST_SUCCESS) {
+		xil_printf("Init switches failed!");
+	}
+
+
+	int status = three_phase_pwm_Initialize(&pwm_gen_inst, PWM_DEVICE_ID);
+	//three_phase_pwm_enable_in_write(&pwm_gen_inst,1); SHOULD BE DONE IN INTERFACE TASK. WILL NOT DRIVE BEFORE IT IS DONE!!!
+	if (status != XST_SUCCESS){
+		xil_printf("PWM_generator initialize has failed!\r\n");
+	}
+	else {
+		xil_printf("PWM_generator initialize has succeded!\r\n");
+	}
+
+	u32 freq = 20000;
+	//u32 freq = 1000;
+
+	three_phase_pwm_frequency_in_write(&pwm_gen_inst,freq);
+	//MAYBE ALL PHASES SHOULD BE GIVEN ZERO DUTY
+
+	three_phase_pwm_a_dutycycle_in_write(&pwm_gen_inst, 0);
+	three_phase_pwm_b_dutycycle_in_write(&pwm_gen_inst, 0);
+	three_phase_pwm_c_dutycycle_in_write(&pwm_gen_inst, 0);
+
+	_starts(PWM_TASK, MILLI_SEC(1000));
+}
+
+void pwm_task(void){
+
+
+	//OLD VERSION - IS NOT USED!!!
+	/*
+	t = t+10; //10us
+	va = sin(t*(float)w/100000);
+	a_duty = (va+1)*500; 					//(v+1)/2 *1000
+	//duty_cycle will be divided by 1000 to give the effective duty cycle
+
+	vb = sin(t*(float)w/100000+(float)2*PI/3);
+	b_duty = (vb+1)*500; 					//(v+1)/2 *1000
+
+	vc = sin(t*(float)w/100000-(float)2*PI/3);
+	c_duty = (vc+1)*500; 					//(v+1)/2 *1000
+
+	three_phase_pwm_a_dutycycle_in_write(&pwm_gen_inst, a_duty);
+	three_phase_pwm_b_dutycycle_in_write(&pwm_gen_inst, b_duty);
+	three_phase_pwm_c_dutycycle_in_write(&pwm_gen_inst, c_duty);
+
+	//three_phase_pwm_a_dutycycle_in_write(&pwm_gen_inst, 0);
+	//three_phase_pwm_b_dutycycle_in_write(&pwm_gen_inst, 300);
+	//three_phase_pwm_c_dutycycle_in_write(&pwm_gen_inst, 0);
+	 */
+	//xil_printf("theta!: %d  \r\n",(int)rotor_position_degrees);
+
+	rotor_position_degrees_e = (rotor_position_degrees*2)-30-90;	//-30-90 is measured offset!
+	if(rotor_position_degrees_e<0){
+		//	rotor_position_degrees_e = (2.*PI)-rotor_position_degrees_e;
+	}
+	//rotor_position_radian = rotor_position_degrees*2*PI*100/360;
+
+	target_position_degree_e = rotor_position_degrees_e+90;
+	target_position_radian_e = (target_position_degree_e)*2*PI/360;
+
+	//OLD VERSION - IS NOT USED!!!
+	/*
+	//xil_printf("Rotor position: %d radian \r\n",rotor_position_radian);
+	//xil_printf("A position: %d radian \r\n",test);
+
+	va = sin(target_position_radian_e);
+	a_duty = (va+1)*500; 					//(v+1)/2 *1000
+	//duty_cycle will be divided by 1000 to give the effective duty cycle
+
+	vb = sin(target_position_radian_e-(float)2*PI/3);
+	b_duty = (vb+1)*500; 					//(v+1)/2 *1000
+
+	vc = sin(target_position_radian_e+(float)2*PI/3);
+	c_duty = (vc+1)*500; 					//(v+1)/2 *1000
+
+	three_phase_pwm_a_dutycycle_in_write(&pwm_gen_inst, a_duty);
+	three_phase_pwm_b_dutycycle_in_write(&pwm_gen_inst, b_duty);
+	three_phase_pwm_c_dutycycle_in_write(&pwm_gen_inst, c_duty);
+	 */
+
+	/* Removed because of test!!
+	// These values should NOT be set here!
+	int d,q,z_seq,third_harmonic;
+	d = 0;
+	q = 550;
+	z_seq = 0;
+
+	//INVERSE CLARKE PARK TRANSFORMATION (aligned with reference frame A) - with third harmonic injection
+	float I_a,I_b,I_c;
+	theta = target_position_radian_e;
+	I_a = cos(theta)*d				-sin(theta)*q			+z_seq;
+	I_b = cos(theta - 2.*PI/3.)*d 	-sin(theta-2.*PI/3)*q	+z_seq;
+	I_c = cos(theta + 2.*PI/3.)*d	-sin(theta+2.*PI/3)*q	+z_seq;
+
+	third_harmonic = (1./6.)*(sin(asin((I_a/sqrt(pow(I_a,2)+pow(I_b,2)+pow(I_c,2))))));
+
+	three_phase_pwm_a_dutycycle_in_write(&pwm_gen_inst, (I_a+500+third_harmonic));
+	three_phase_pwm_b_dutycycle_in_write(&pwm_gen_inst, (I_b+500+third_harmonic));
+	three_phase_pwm_c_dutycycle_in_write(&pwm_gen_inst, (I_c+500+third_harmonic));
+	 */
+	u32 var;
+	var =  XGpio_DiscreteRead(&Gpio_switch,0b0001);
+	if(var==3){
+		//ONLY FOR TESTING PURPOSES!!!
+		interfaces_otp_led_write(&interface_inst,1);
+
+		// These values should NOT be set here!
+		int d,q,z_seq,third_harmonic;
+		d = 0;
+		q = 550;
+		z_seq = 0;
+
+		//INVERSE CLARKE PARK TRANSFORMATION (aligned with reference frame A) - with third harmonic injection
+		float I_a,I_b,I_c;
+		theta = target_position_radian_e;
+		I_a = cos(theta)*d				-sin(theta)*q			+z_seq;
+		I_b = cos(theta - 2.*PI/3.)*d 	-sin(theta-2.*PI/3)*q	+z_seq;
+		I_c = cos(theta + 2.*PI/3.)*d	-sin(theta+2.*PI/3)*q	+z_seq;
+
+		third_harmonic = (1./6.)*(sin(asin((I_a/sqrt(pow(I_a,2)+pow(I_b,2)+pow(I_c,2))))));
+
+		three_phase_pwm_a_dutycycle_in_write(&pwm_gen_inst, (I_c+500+third_harmonic));
+		three_phase_pwm_b_dutycycle_in_write(&pwm_gen_inst, (I_b+500+third_harmonic));
+		three_phase_pwm_c_dutycycle_in_write(&pwm_gen_inst, (I_a+500+third_harmonic));
+
+
+
+
+		//three_phase_pwm_a_dutycycle_in_write(&pwm_gen_inst, (500));
+		//three_phase_pwm_b_dutycycle_in_write(&pwm_gen_inst, (0));
+		//three_phase_pwm_c_dutycycle_in_write(&pwm_gen_inst, (0));
+	}else{
+		three_phase_pwm_a_dutycycle_in_write(&pwm_gen_inst, (0));
+		three_phase_pwm_b_dutycycle_in_write(&pwm_gen_inst, (0));
+		three_phase_pwm_c_dutycycle_in_write(&pwm_gen_inst, (0));
+	}
+
+
+	_wait(MILLI_SEC(1));
+	// Wait 10us
+	//_wait(MICRO_SEC(10));
+}
+
+void init_encoder_task(void){
+	xil_printf("Init encoder task!\r\n");
+	_starts(ENCODER_TASK, MILLI_SEC(500));
+}
+
+void encoder_task(void){
+	// Set MIO7 GPIO pin high by a read-modify-write sequence
+	GPIO_DATA_0 = GPIO_DATA_0_RO | 0x00000080;
+
+	// Read encoder position from IP-core
+	position = RM28MD_POSITION & 0x000000FF; // Only first 8 bit is valid
+
+	rotor_position_degrees = (position*360)/256;
+	//xil_printf("Rotor position: %d degree!!!!! \r\n",rotor_position_degrees);
+	// Set MIO7 GPIO pin low by using mask write to avoid read-modify-write sequence
+	// MASK bit[31-16], Data bit[15-0]
+	GPIO_MASK_DATA_0_LSW = 0xFF7F0000;
+
+	_wait(MILLI_SEC(1));
+}
+
+void init_communication_task(void){
+	xil_printf("Init communication task!\r\n");
+	_starts(COMMUNICATION_TASK, MILLI_SEC(500));
+}
+
+void communication_task(void){
+	//	xil_printf("rotor position degrees!: %d  \r\n",rotor_position_degrees);
+	//	xil_printf("I am the communication task!\r\n");
+
+	/*
+	xil_printf("I am the communication task!\r\n");
+	xil_printf("a dutycycle: %d  \r\n",a_duty);
+	xil_printf("b dutycycle: %d  \r\n",b_duty);
+	xil_printf("c dutycycle: %d  \r\n",c_duty);
+	xil_printf("position e degree: %d degree \r\n",rotor_position_degrees_e);
+	xil_printf("target position e degree: %d degree \r\n",target_position_degree_e);
+	xil_printf("target position e radian: %d radian \r\n",(int)(target_position_radian_e*100));
+	xil_printf("\r\n\n");
+	 */
+
+	/* From matlab:
+	d = (2/3)*(cos(u(4))*u(1)+cos(u(4)-2*pi/3)*u(2)+cos(u(4)+2*pi/3)*u(3))
+	q = (2/3)*(-sin(u(4))*u(1)-sin(u(4)-2*pi/3)*u(2)-sin(u(4)+2*pi/3)*u(3))
+	0 = (2/3)*(1/2)*(u(1)+u(2)+u(3))
+
+	a = u(1)
+	b = u(2)
+	c = u(3)
+	theta = u(4)
+	 */
+	/*
+	float I_a,I_b,I_c,theta;
+	I_a = 10;
+	I_b = 9;
+	I_c = 0;
+	theta = 1;
+
+	//Clarke/Park transform (aligned with reference frame A)
+	float d,q,z_seq;
+	d = (2./3.)*(cos(theta)*I_a		+cos(theta-2.*PI/3.)*I_b	+cos(theta+2.*PI/3.)*I_c);
+	q = (2./3.)*(-sin(theta)*I_a	-sin(theta-2.*PI/3.)*I_b	-sin(theta+2.*PI/3.)*I_c);
+	z_seq = (2./3.)*(1./2.)*(I_a+I_b+I_c);
+
+	int d_print,q_print, z_print;
+	d_print = d*100;
+	q_print = q*100;
+	z_print = z_seq*100;
+	 */
+	/*
+	float d,q,z_seq,theta;
+	d = 	0;
+	q = 	10;
+	z_seq = 0;
+	theta = 0.5*PI;
+
+	//Inverse Clarke/Park transform (aligned with reference frame A)
+	float I_ac,I_bc, I_cc;
+	I_ac = cos(theta)*d				-sin(theta)*q			+z_seq;
+	I_bc = cos(theta - 2.*PI/3.)*d 	-sin(theta-2.*PI/3)*q	+z_seq;
+	I_cc = cos(theta + 2.*PI/3.)*d	-sin(theta+2.*PI/3)*q	+z_seq;
+
+	int I_aprint,I_cprint,I_bprint,theta_print;
+
+	I_bprint = I_bc*100;
+	I_aprint = I_ac*100;
+	I_cprint = I_cc*100;
+	theta_print = theta*100;
+
+	xil_printf("I am the communication task!\r\n");
+	//xil_printf("d: %d  \r\n",	d_print);
+	//xil_printf("q: %d  \r\n",	q_print);
+	//xil_printf("zero: %d  \r\n",z_print);
+	xil_printf("Ia: %d  \r\n",	I_aprint);
+	xil_printf("Ib: %d  \r\n",	I_bprint);
+	xil_printf("Ic: %d  \r\n",	I_cprint);
+	xil_printf("theta: %d  \r\n",theta_print);
+	 */
+
+	_wait(MILLI_SEC(100));
+}
+
+void init_adc_task(void){
+	xil_printf("Init adc task!\r\n");
+	int status;
+	/*
+	 * Initialize the XAdc driver.
+	 */
+	ConfigPtr = XAdcPs_LookupConfig(XADC_DEVICE_ID);
+	if (ConfigPtr == NULL) {
+		xil_printf("adc initialize has failed!\r\n");
+	}
+	XAdcPs_CfgInitialize(XAdcInstPtr, ConfigPtr,
+			ConfigPtr->BaseAddress);
+
+	/*
+	 * Self Test the XADC/ADC device
+	 */
+	status = XAdcPs_SelfTest(XAdcInstPtr);
+	if (status != XST_SUCCESS) {
+		xil_printf("adc initialize has failed!\r\n");
+	}
+
+	_starts(ADC_TASK, MILLI_SEC(500));
+}
+
+void adc_task(void){
+
+	u32 adc_raw_data;
+
+	adc_raw_data = XAdcPs_GetAdcData(XAdcInstPtr, XADCPS_CH_AUX_MIN+6);
+	I_a = adc_bipolar_rawtovoltage(adc_raw_data);
+
+	adc_raw_data = XAdcPs_GetAdcData(XAdcInstPtr, XADCPS_CH_AUX_MIN+14);
+	I_b = adc_bipolar_rawtovoltage(adc_raw_data);
+
+	//VccPrintData = VccPrintData*1000;
+	//int print = VccPrintData;
+	//print = VccPdroRawData;
+	//printf("\r\n Voltage on Channel 14 is %d mVolts. \r\n",print);
+
+	//Torque reference also needs to be read!!!
+
+
+	_wait(MILLI_SEC(100));
+}
+
+void init_controller_task(void){
+	xil_printf("Init controller task!\r\n");
+
+	_starts(CONTROLLER_TASK, MILLI_SEC(500));
+}
+
+void controller_task(void){
+
+	/* 	CURRENT CALCULATOR	*/
+	I_c = -I_a -I_b;
+
+
+	/* CLARKE PARK TRANSFORMATION (aligned with reference frame A)	*/
+	float d,q,z_seq;
+	d = (2./3.)*(cos(theta)*I_a		+cos(theta-2.*PI/3.)*I_b	+cos(theta+2.*PI/3.)*I_c);
+	q = (2./3.)*(-sin(theta)*I_a	-sin(theta-2.*PI/3.)*I_b	-sin(theta+2.*PI/3.)*I_c);
+	z_seq = (2./3.)*(1./2.)*(I_a+I_b+I_c);
+
+	/* d PI CONTROLLER */
+	// Something here!!!
+	V_sd = 0;
+
+	/* q PI CONTROLLER */
+	// Something here!!!
+	V_sq = 0;
+
+
+	//How often should I be run?
+	_wait(MILLI_SEC(100));
+}
+
+void init_interface_task(void){
+	xil_printf("Init interface task!\r\n");
+	interfaces_Initialize(&interface_inst,INTERFACE_DEVICE_ID);
+
+	s32 var;
+	var = SPI_init(&SPI, SPI_DEVICE_ID);
+	if (var != XST_SUCCESS) {
+		xil_printf("SPI init failed!\r\n");
+	}else{
+		xil_printf("SPI init succeded!\r\n");
+	}
+
+	_starts(INTERFACE_TASK, MILLI_SEC(500));
+}
+
+void interface_task(void){
+	u32 var;
+	var =  XGpio_DiscreteRead(&Gpio_switch,0b0001);
+	if(var%2 == 1){
+		interfaces_zybo_en_gate_write(&interface_inst, 1);
+	}else{
+		interfaces_zybo_en_gate_write(&interface_inst, 0);
+	}
+
+	//interfaces_zybo_en_gate_write(&interface_inst, 1);
+	//READ drive enable, fault pin, overcurrent pin, power good pin and drive enable signal
+	//write to LEDS
+
+	/*
+	if(first_time){
+		inrush_relay = 1;
+		timer.start
+
+		if(timer == runout){
+			main_relay = 1;
+			wait a cycle??
+			inrush_relay = 0;
+		}
+	}
+
+	if(all is good = 1){
+		enable = 1;
+	}else
+	{
+		enable = 0;
+	}
+	 */
+
+
+	//How often?
+	_wait(MILLI_SEC(1));
+}
+
+float adc_bipolar_rawtovoltage(u32 adc_data){
+	float voltage;
+
+	//adc_data += 655;
+
+	if(adc_data<32768){
+		voltage = adc_data*(1.0)/65536.0;
+	}else{
+		voltage = -1+adc_data*(1.0)/65536.0;
+	}
+	return voltage;
+}
+
+s32 SPI_init(XSpiPs *SPI_inst, int device_id){
+
+	int status;
+	XSpiPs_Config *SPI_config;
+
+	/*
+	 * Initialize the SPI device.
+	 */
+	SPI_config = XSpiPs_LookupConfig(device_id);
+	if (NULL == SPI_config) {
+		return XST_FAILURE;
+	}
+
+	status = XSpiPs_CfgInitialize(SPI_inst, SPI_config, SPI_config->BaseAddress);
+	if (status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	/*
+	 * Perform a self-test to check hardware build.
+	 */
+	status = XSpiPs_SelfTest(SPI_inst);
+	if (status != XST_SUCCESS) {
+		xil_printf("SPI SELFTEST Failed\r\n");
+		return XST_FAILURE;
+	}
+	xil_printf("SPI SELFTEST SUCCEDED\r\n");
+
+	/*
+	 * Set the SPI device as a master with manual start and manual
+	 * chip select mode options
+	 */
+	XSpiPs_SetOptions(SPI_inst, XSPIPS_MANUAL_START_OPTION | XSPIPS_MASTER_OPTION | XSPIPS_FORCE_SSELECT_OPTION | XSPIPS_CLK_PHASE_1_OPTION );
+
+	u32 config_ref;
+	config_ref = XSpiPs_ReadReg(SPI_inst->Config.BaseAddress, XSPIPS_CR_OFFSET);
+	config_ref |= XSPIPS_CR_MANSTRT_MASK;
+	XSpiPs_WriteReg(SPI_inst->Config.BaseAddress,XSPIPS_CR_OFFSET, config_ref);
+
+
+	/*
+	 * Set the SPI device pre-scalar to divide by 128
+	 */
+	XSpiPs_SetClkPrescaler(SPI_inst, XSPIPS_CLK_PRESCALE_128);
+
+	/*
+	 * Set slave select to 0
+	 */
+	u32 var1;
+	var1 = XSpiPs_SetSlaveSelect(SPI_inst, (u8) 0);
+}
+
+s32 SPI_OC_OFF(XSpiPs *SPI_inst){
+	u8 output_buffer[] = {0b00010000, 0b00110000};					// 2 bytes to be sent
+
+
+
+
+
+	var1 = XSpiPs_PolledTransfer(&Spi, &output_buffer,NULL, 2); 	//Send 2 bytes. Don't receive anything
+	if(var1 ==XST_SUCCESS){
+		xil_printf("SENT!!!\r\n");
+	}else{
+		xil_printf("NOT SENT!!!\r\n");
+	}
+//	long i;
+//	for(i=0;i<1;i++){
+		// Do nothing
+//	}
+	var1 = XSpiPs_PolledTransfer(&Spi, &output_buffer,NULL, 2); 	//Send 2 bytes. Don't receive anything
+		if(var1 ==XST_SUCCESS){
+			xil_printf("SENT!!!\r\n");
+		}else{
+			xil_printf("NOT SENT!!!\r\n");
+		}
+}
+int main(void)
+/*****************************************************************************
+ *   Input    : NONE
+ *   Output   : Returns 0
+ *   Function : Init hardware and then loop forever
+ ******************************************************************************/
+{
+
+	start_rtcs_scheduler();		// Call scheduler
+
+	return( 0 );
+}
+
+/****************************** End Of Module *******************************/

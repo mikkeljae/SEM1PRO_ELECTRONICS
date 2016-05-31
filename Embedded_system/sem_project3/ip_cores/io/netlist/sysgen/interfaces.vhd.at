@@ -1,0 +1,27 @@
+{
+  'Line_122' => {
+    'CodeInstance' => 'interfaces_default_clock_driver/clockdriver',
+    'Instance' => 'clockdriver',
+    'SimulinkInstance' => ''
+  },
+  'Line_199' => {
+    'CodeInstance' => 'interfaces_axi_lite_interface',
+    'Instance' => 'interfaces_axi_lite_interface',
+    'SimulinkInstance' => ''
+  },
+  'Line_237' => {
+    'CodeInstance' => 'interfaces_default_clock_driver',
+    'Instance' => 'interfaces_default_clock_driver',
+    'SimulinkInstance' => ''
+  },
+  'Line_245' => {
+    'CodeInstance' => 'interfaces_struct',
+    'Instance' => 'interfaces_struct',
+    'SimulinkInstance' => 'interfaces'
+  },
+  'Line_91' => {
+    'CodeInstance' => 'interfaces_struct/counter_x0',
+    'Instance' => 'counter_x0',
+    'SimulinkInstance' => 'interfaces/Counter'
+  }
+}
